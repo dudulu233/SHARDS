@@ -1,3 +1,9 @@
+# SHARDS
+The main code is fork from "https://bitbucket.org/niuqingpeng/file_parda/src/master/"
+
+
+
+## original parda README
 Reuse distance is a well established approach to characterizing data cache locality based on the stack histogram model. 
 This analysis so far has been restricted to ofﬂine use due to the high cost, often several orders of magnitude larger than the execution time of the analyzed code. Parda is the ﬁrst parallel algorithm to compute accurate reuse distances by analysis of memory address traces. The algorithm uses a tunable parameter that enables faster analysis when the maximum needed reuse distance is limited by a cache size upper bound. 
 
