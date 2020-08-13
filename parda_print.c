@@ -63,20 +63,17 @@ void parda_print_histogram(const unsigned* histogram) {
   sum += histogram[B_OVFL];
   sum += histogram[B_INF];
 
-  //printf("# Dist\t     Refs\t   Refs(%%)\t  Cum_Ref\tCum_Ref(%%)\n");
+  printf("# Dist\t     Refs\t   Refs(%%)\t  Cum_Ref\tCum_Ref(%%)\n");
 
   for (i = 0; i <= last_bucket; i++) {
     cum += histogram[i];
-    //printf("%6d\t%9u\t%0.8lf\t%9llu\t%0.8lf\n", i, histogram[i],
-    //    histogram[i] / (double)sum, cum, cum / (double)sum);
-    printf("%d,%0.8lf\n", i, cum / (double)sum);
+    printf("%6d\t%9u\t%0.8lf\t%9llu\t%0.8lf\n", i, histogram[i],
+        histogram[i] / (double)sum, cum, cum / (double)sum);
   }
 
   cum += histogram[B_OVFL];
-  //printf("#OVFL \t%9u\t%0.8f\t%9llu\t%0.8lf\n", histogram[B_OVFL], histogram[B_OVFL]/(double)sum, cum, cum/(double)sum);
-  //printf("#OVFL,%0.8lf\n", cum/(double)sum);
+  printf("#OVFL \t%9u\t%0.8f\t%9llu\t%0.8lf\n", histogram[B_OVFL], histogram[B_OVFL]/(double)sum, cum, cum/(double)sum);
   cum += histogram[B_INF];
-  //printf("#INF  \t%9u\t%0.8f\t%9llu\t%0.8lf\n", histogram[B_INF], histogram[B_INF]/(double)sum, cum, cum/(double)sum);
-  printf("#INF,%0.8lf\n", cum/(double)sum);
+  printf("#INF  \t%9u\t%0.8f\t%9llu\t%0.8lf\n", histogram[B_INF], histogram[B_INF]/(double)sum, cum, cum/(double)sum);
   //printf("#INF  \t%9u\n", histogram[B_INF]);
 }
