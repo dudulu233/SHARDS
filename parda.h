@@ -14,6 +14,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <unistd.h>
+#include <stdint.h>
 
 /*
   An implementation of Parda, a fast parallel algorithm
@@ -47,8 +48,8 @@ traces.
 #define PROF(cmd)
 #endif
 
-//#define DEFAULT_NBUCKETS 100000
-#define DEFAULT_NBUCKETS 1000000
+//#define DEFAULT_NBUCKETS 16000000,1600W; 1023GB
+#define DEFAULT_NBUCKETS 1023
 #define B_OVFL   nbuckets
 #define B_INF    nbuckets+1
 #define SLEN 20
@@ -112,6 +113,8 @@ void show_hkey(void* data, int i, FILE* fp);
 void show_T(void* data, int i, FILE* fp);
 /*functions for clock*/
 double rtclock(void);
+/*murmurhash3*/
+uint32_t murmurhash(const char* key, uint32_t len, uint32_t seed);
 
 /*parda inline functions*/
 static inline T parda_low(int pid, int psize, T sum) {
@@ -168,7 +171,10 @@ static inline void process_one_access(char* input, program_data_t* pdt, const lo
 				}
 				*p_data = tim;
 				g_hash_table_replace(pdt->gh, data, p_data);
-				// Is distance greater than the largest bucket
+
+				// sampling rate = 0.01
+				distance *= 100;
+				distance = distance >> 15; // 1 cache block = 32K, transfer to GB
 				if (distance > nbuckets)
 						pdt->histogram[B_OVFL] += 1;
 				else
