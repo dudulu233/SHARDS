@@ -168,6 +168,9 @@ static inline void process_one_access(char* input, program_data_t* pdt, const lo
 				}
 				*p_data = tim;
 				g_hash_table_replace(pdt->gh, data, p_data);
+				
+				// sampling rate = 0.01
+				distance *= 100;
 				// Is distance greater than the largest bucket
 				if (distance > nbuckets)
 						pdt->histogram[B_OVFL] += 1;
