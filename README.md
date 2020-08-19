@@ -1,7 +1,7 @@
 # SHARDS
 The main code is fork from "https://bitbucket.org/niuqingpeng/file_parda/src/master/"  
 
-Modify parda.h and parda.c, add murmurhash3 to realize sampling.  
+I modified parda.h and parda.c, add murmurhash3 to realize sampling.  
 
 You can change the "threshold_value" in parda.c to change the sampling ratio, and don't forget to change the "distance" in parda.h at the same time.
 
