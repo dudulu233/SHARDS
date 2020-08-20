@@ -14,6 +14,8 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <unistd.h>
+#include <stdint.h>
+
 
 /*
   An implementation of Parda, a fast parallel algorithm
